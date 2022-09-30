@@ -1,6 +1,6 @@
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import PokedexMain from "./components/PokedexMain/PokedexMain";
+import Pokedex from "./components/Pokedex/Pokedex";
 
 function App() {
   const queryClient = new QueryClient();
@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <QueryClientProvider client={queryClient}>
-        <PokedexMain />
+        <Pokedex />
         <ReactQueryDevtools initialIsOpen={true} />
       </QueryClientProvider>
     </div>
