@@ -1,5 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useRef } from "react";
 
 interface pokemonListTypes {
   name: string;
@@ -15,6 +16,7 @@ const fetchPokemonList = async ({
 };
 
 function Pokedex() {
+  const lastPokemonRef = useRef(null);
   const {
     isLoading,
     isError,
@@ -26,16 +28,25 @@ function Pokedex() {
   } = useInfiniteQuery(["pokemon"], fetchPokemonList, {
     getNextPageParam: (lastPage) => lastPage.nextPage,
   });
+
+  const pokemonList = data?.pages.map((group) => {
+    return group.response.map((pokemon: pokemonListTypes, i: number) => {
+      if (group.response.length - 1 === i) {
+        return (
+          <li ref={lastPokemonRef} key={pokemon.name}>
+            {pokemon.name} - ref
+          </li>
+        );
+      }
+      console.log(i);
+      return <li key={pokemon.name}>{pokemon.name}</li>;
+    });
+  });
+
   return (
     <div>
       <h1>Pokedex</h1>
-      <div>
-        {data?.pages.map((group, i) =>
-          group.response.map((pokemon: pokemonListTypes) => (
-            <li key={pokemon.name}>{pokemon.name}</li>
-          ))
-        )}
-      </div>
+      <div>{pokemonList}</div>
       <div>
         <button
           disabled={!hasNextPage || isFetchingNextPage}
