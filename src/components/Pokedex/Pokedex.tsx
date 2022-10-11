@@ -42,9 +42,11 @@ function Pokedex() {
     return group.response.map((pokemon: pokemonListTypes, i: number) => {
       if (group.response.length - 1 === i) {
         return (
-          <li ref={ref} key={pokemon.name}>
-            {pokemon.name}
-          </li>
+          <div className={styles.pokedex__card}>
+            <li ref={ref} key={pokemon.name}>
+              {pokemon.name}
+            </li>
+          </div>
         );
       }
       return (
