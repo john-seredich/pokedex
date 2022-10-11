@@ -1,7 +1,8 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useInView } from "react-intersection-observer";
+import styles from "./Pokedex.module.scss";
 
 interface pokemonListTypes {
   name: string;
@@ -28,8 +29,9 @@ function Pokedex() {
   } = useInfiniteQuery(["pokemon"], fetchPokemonList, {
     getNextPageParam: (lastPage) => lastPage.nextPage,
   });
+
   const { ref, inView } = useInView({
-    rootMargin: "100px",
+    rootMargin: "200px",
   });
 
   if (inView) {
@@ -41,26 +43,29 @@ function Pokedex() {
       if (group.response.length - 1 === i) {
         return (
           <li ref={ref} key={pokemon.name}>
-            {pokemon.name} - ref
+            {pokemon.name}
           </li>
         );
       }
-      return <li key={pokemon.name}>{pokemon.name}</li>;
+      return (
+        <div className={styles.pokedex__card}>
+          <li key={pokemon.name}>{pokemon.name}</li>
+        </div>
+      );
     });
   });
 
   return (
-    <div>
-      <h1>Pokedex</h1>
-      <div>{pokemonList}</div>
-      <div>
+    <div className={styles.pokedex}>
+      <div className={styles.pokedex__container}>{pokemonList}</div>
+      {/* <div>
         <button
           disabled={!hasNextPage || isFetchingNextPage}
           onClick={() => fetchNextPage()}
         >
           Load More
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
