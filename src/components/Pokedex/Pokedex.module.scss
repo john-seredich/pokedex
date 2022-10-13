@@ -3,7 +3,7 @@
   &__container {
     display: grid;
     place-items: center;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
 
     li {
       list-style: none;

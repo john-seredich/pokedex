@@ -1,7 +1,5 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { useRef } from "react";
 import { useInView } from "react-intersection-observer";
+import { usePokemonsList } from "../../hooks/usePokemonList";
 import styles from "./Pokedex.module.scss";
 
 interface pokemonListTypes {
@@ -9,26 +7,15 @@ interface pokemonListTypes {
   url: string;
 }
 
-const fetchPokemonList = async ({
-  pageParam = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=20",
-}) => {
-  const request = await axios.get(pageParam);
-  const { results, next } = await request.data;
-  return { response: results, nextPage: next };
-};
-
 function Pokedex() {
   const {
     isLoading,
-    isError,
     error,
     data,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useInfiniteQuery(["pokemon"], fetchPokemonList, {
-    getNextPageParam: (lastPage) => lastPage.nextPage,
-  });
+  } = usePokemonsList();
 
   const { ref, inView } = useInView({
     rootMargin: "200px",
@@ -40,34 +27,32 @@ function Pokedex() {
 
   const pokemonList = data?.pages.map((group) => {
     return group.response.map((pokemon: pokemonListTypes, i: number) => {
+      // Last element in each API call
       if (group.response.length - 1 === i) {
         return (
-          <div className={styles.pokedex__card}>
-            <li ref={ref} key={pokemon.name}>
-              {pokemon.name}
-            </li>
+          <div ref={ref} key={pokemon.name} className={styles.pokedex__card}>
+            <h3>{pokemon.name}</h3>
           </div>
         );
       }
       return (
-        <div className={styles.pokedex__card}>
-          <li key={pokemon.name}>{pokemon.name}</li>
+        <div key={pokemon.name} className={styles.pokedex__card}>
+          <h3>{pokemon.name}</h3>
         </div>
       );
     });
   });
 
+  if (isLoading) return <h2>Loading...</h2>;
+  if (error instanceof Error)
+    return <h2>Something went wrong. {error.message}</h2>;
+
+  // TODO: Add a check if reaches the last page
+
   return (
     <div className={styles.pokedex}>
       <div className={styles.pokedex__container}>{pokemonList}</div>
-      {/* <div>
-        <button
-          disabled={!hasNextPage || isFetchingNextPage}
-          onClick={() => fetchNextPage()}
-        >
-          Load More
-        </button>
-      </div> */}
+      {isFetchingNextPage && <h2>Loading...</h2>}
     </div>
   );
 }
