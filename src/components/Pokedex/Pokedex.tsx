@@ -33,19 +33,20 @@ function Pokedex() {
         if (group.response.length - 1 === i) {
           // Return Pokemon To observer for infinite scroll
           return (
-            <div ref={ref} key={pokemon.name} className={styles.pokedex__card}>
+            <div ref={ref} key={pokemon.name}>
               <PokemonCard {...info} />
             </div>
           );
         } else {
           // Return Non Observer Pokemon
           return (
-            <div key={pokemon.name} className={styles.pokedex__card}>
+            <div key={pokemon.name}>
               <PokemonCard {...info} />
             </div>
           );
         }
       }
+      return null;
     });
   });
 

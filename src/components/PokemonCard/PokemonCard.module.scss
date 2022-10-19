@@ -1,0 +1,20 @@
+.pokemon_card {
+  text-align: center;
+  margin: 1rem;
+  border-radius: 1rem;
+  width: 260px;
+  height: 355px;
+  background-color: #78c850;
+  color: white;
+
+  h4 {
+    padding-top: 1rem;
+  }
+  p {
+    background-color: #4b4b4b;
+    margin: 1rem 5rem;
+    padding: 0.45rem 0.5rem;
+    border-radius: 1rem;
+    font-weight: 600;
+  }
+}
