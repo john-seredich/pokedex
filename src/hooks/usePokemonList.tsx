@@ -12,5 +12,7 @@ const fetchPokemonList = async ({
 export function usePokemonsList() {
   return useInfiniteQuery(["pokemon"], fetchPokemonList, {
     getNextPageParam: (lastPage) => lastPage.nextPage,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
   });
 }

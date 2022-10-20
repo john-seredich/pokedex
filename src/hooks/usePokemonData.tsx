@@ -6,5 +6,8 @@ const fetchPokemonData = (url: string) => {
 };
 
 export function usePokemonData(url: string) {
-  return useQuery(["pokemonData", url], () => fetchPokemonData(url));
+  return useQuery(["pokemonData", url], () => fetchPokemonData(url), {
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+  });
 }
