@@ -4,8 +4,9 @@
   border-radius: 1rem;
   width: 260px;
   height: 355px;
-  background-color: #78c850;
+  //   background-color: #78c850;
   color: white;
+  cursor: pointer;
 
   h4 {
     padding-top: 1rem;
@@ -17,4 +18,77 @@
     border-radius: 1rem;
     font-weight: 600;
   }
+}
+
+// Basic Pokemon Types
+.grass {
+  background-color: #78c850;
+}
+
+.poison {
+  background-color: #a040a0;
+}
+
+.fire {
+  background-color: #f08030;
+}
+
+.flying {
+  background-color: #a890f0;
+}
+
+.water {
+  background-color: #6890f0;
+}
+
+.bug {
+  background-color: #a8b820;
+}
+
+.normal {
+  background-color: #a5a477;
+}
+
+.electric {
+  background-color: #d5b328;
+  //   background-color: #f8d030;
+}
+
+.ground {
+  background-color: #e0c068;
+}
+
+.fairy {
+  background-color: #f0b6bc;
+}
+
+.fighting {
+  background-color: #c03028;
+}
+
+.rock {
+  background-color: #b8a038;
+}
+
+.steel {
+  background-color: #b8b8d0;
+}
+
+.ghost {
+  background-color: #705898;
+}
+
+.psychic {
+  background-color: #f85888;
+}
+
+.dragon {
+  background-color: #7038f8;
+}
+.dark {
+  background-color: #705848;
+}
+
+.ice {
+  background-color: #98d8d8;
 }
