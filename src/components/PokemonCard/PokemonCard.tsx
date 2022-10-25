@@ -29,6 +29,8 @@ function PokemonCard(props: Props) {
     return <p key={i}>{upperCaseType}</p>;
   });
 
+  console.log(data?.data);
+
   return (
     <div className={`${styles.pokemon_card} ${styles[pokemonColor]}`}>
       <h4>#{pokemonNumber}</h4>

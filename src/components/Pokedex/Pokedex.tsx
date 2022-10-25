@@ -26,9 +26,6 @@ function Pokedex() {
     fetchNextPage();
   }
 
-  console.log(data);
-  console.log(hasNextPage);
-
   const pokemonList = data?.pages.map((group) => {
     return group.response.map((pokemon: pokemonListTypes, i: number) => {
       if (group.response) {
