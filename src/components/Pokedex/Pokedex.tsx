@@ -22,7 +22,7 @@ function Pokedex() {
     rootMargin: "200px",
   });
 
-  if (inView) {
+  if (hasNextPage && inView) {
     fetchNextPage();
   }
 
@@ -53,8 +53,6 @@ function Pokedex() {
   if (isLoading) return <h2>Loading...</h2>;
   if (error instanceof Error)
     return <h2>Something went wrong. {error.message}</h2>;
-
-  // TODO: Add a check if reaches the last page
 
   return (
     <div className={styles.pokedex}>
