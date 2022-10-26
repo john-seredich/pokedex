@@ -1,5 +1,4 @@
 import { useInView } from "react-intersection-observer";
-import { usePokemonsList } from "../../hooks/usePokemonList";
 import styles from "./Pokedex.module.scss";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import axios from "axios";
@@ -31,25 +30,27 @@ function Pokedex() {
     }
   }, [inView]);
 
-  const pokemonList = data?.data.results.map((pokemon: any, i: number) => {
-    if (i >= pageCount) return null;
-    const info = { name: pokemon.name, url: pokemon.url };
-    if (i === pageCount - 1) {
-      // Observer Ref
-      return (
-        <div ref={ref} key={i}>
-          <PokemonCard {...info} />
-        </div>
-      );
-    } else {
-      return (
-        // Standard Item
-        <div key={i}>
-          <PokemonCard {...info} />
-        </div>
-      );
+  const pokemonList = data?.data.results.map(
+    (pokemon: pokemonListTypes, i: number) => {
+      if (i >= pageCount) return null;
+      const info = { name: pokemon.name, url: pokemon.url };
+      if (i === pageCount - 1) {
+        // Observer Ref
+        return (
+          <div ref={ref} key={i}>
+            <PokemonCard {...info} />
+          </div>
+        );
+      } else {
+        return (
+          // Standard Item
+          <div key={i}>
+            <PokemonCard {...info} />
+          </div>
+        );
+      }
     }
-  });
+  );
 
   return (
     <div className={styles.pokedex}>
