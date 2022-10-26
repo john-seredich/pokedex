@@ -1,25 +1,17 @@
 import { useInView } from "react-intersection-observer";
 import styles from "./Pokedex.module.scss";
 import PokemonCard from "../PokemonCard/PokemonCard";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
+import { usePokemonList } from "../../hooks/usePokemonList";
 
 interface pokemonListTypes {
   name: string;
   url: string;
 }
 
-const fetchPokemonList = () =>
-  axios.get("https://pokeapi.co/api/v2/pokemon?limit=1154");
-
 function Pokedex() {
   const [pageCount, setPageCount] = useState(20);
-  const { data } = useQuery(["pokemonList"], fetchPokemonList, {
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-  });
-
+  const { data } = usePokemonList();
   const { ref, inView } = useInView({
     rootMargin: "200px",
   });
