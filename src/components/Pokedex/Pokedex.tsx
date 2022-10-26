@@ -3,13 +3,19 @@ import styles from "./Pokedex.module.scss";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import { useState, useEffect } from "react";
 import { usePokemonList } from "../../hooks/usePokemonList";
+import Header from "../../layout/Header/Header";
 
 interface pokemonListTypes {
   name: string;
   url: string;
 }
 
+type Props = {
+  isSearching: boolean;
+};
+
 function Pokedex() {
+  const [isSearching, setIsSearching] = useState(false);
   const [pageCount, setPageCount] = useState(20);
   const { data } = usePokemonList();
   const { ref, inView } = useInView({
@@ -46,9 +52,12 @@ function Pokedex() {
   );
 
   return (
-    <div className={styles.pokedex}>
-      <div className={styles.pokedex__container}>{pokemonList}</div>
-    </div>
+    <>
+      <Header />
+      <div className={styles.pokedex}>
+        <div className={styles.pokedex__container}>{pokemonList}</div>
+      </div>
+    </>
   );
 }
 
