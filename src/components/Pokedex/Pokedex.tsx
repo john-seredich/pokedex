@@ -16,9 +16,10 @@ function Pokedex() {
     rootMargin: "200px",
   });
 
+  // Observer3
   useEffect(() => {
     if (inView) {
-      setPageCount((prevCount: any) => prevCount + 20);
+      setPageCount((prevCount: number) => prevCount + 20);
     }
   }, [inView]);
 
@@ -27,7 +28,7 @@ function Pokedex() {
       if (i >= pageCount) return null;
       const info = { name: pokemon.name, url: pokemon.url };
       if (i === pageCount - 1) {
-        // Observer Ref
+        // Last item ref based on pageCount
         return (
           <div ref={ref} key={i}>
             <PokemonCard {...info} />
@@ -35,7 +36,7 @@ function Pokedex() {
         );
       } else {
         return (
-          // Standard Item
+          // Standard Item without ref
           <div key={i}>
             <PokemonCard {...info} />
           </div>
