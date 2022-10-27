@@ -10,19 +10,15 @@ interface pokemonListTypes {
   url: string;
 }
 
-type Props = {
-  isSearching: boolean;
-};
-
 function Pokedex() {
+  const { data } = usePokemonList();
   const [isSearching, setIsSearching] = useState(false);
   const [pageCount, setPageCount] = useState(20);
-  const { data } = usePokemonList();
   const { ref, inView } = useInView({
     rootMargin: "200px",
   });
 
-  // Observer3
+  // Observer
   useEffect(() => {
     if (inView) {
       setPageCount((prevCount: number) => prevCount + 20);
@@ -53,9 +49,11 @@ function Pokedex() {
 
   return (
     <>
-      <Header />
+      <Header setIsSearching={setIsSearching} />
       <div className={styles.pokedex}>
-        <div className={styles.pokedex__container}>{pokemonList}</div>
+        <div className={styles.pokedex__container}>
+          {!isSearching && pokemonList}
+        </div>
       </div>
     </>
   );

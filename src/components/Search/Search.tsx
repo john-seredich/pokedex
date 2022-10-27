@@ -1,8 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { setIsSearchingType } from "../../shared/types/search.type";
 import styles from "./Search.module.scss";
 
-function Search() {
+function Search(props: setIsSearchingType) {
   const [enteredText, setEnteredText] = useState("");
+
+  useEffect(() => {
+    if (enteredText.length >= 1) {
+      props.setIsSearching(true);
+    } else {
+      props.setIsSearching(false);
+    }
+  }, [props, enteredText.length]);
 
   return (
     <div className={styles.input}>
