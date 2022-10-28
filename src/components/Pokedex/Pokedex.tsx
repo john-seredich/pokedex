@@ -31,6 +31,7 @@ function Pokedex() {
     });
   }, [data]);
 
+  // Filter Function
   useEffect(() => {
     function filterPokemon(value: string) {
       const filteredPokemon = pokemons.filter((pokemon) => {
@@ -40,9 +41,6 @@ function Pokedex() {
           url: pokemon.url,
         };
       });
-
-      console.log(filteredPokemon);
-
       setFilteredPokemon(filteredPokemon);
     }
 
@@ -50,8 +48,6 @@ function Pokedex() {
       filterPokemon(enteredText);
     }
   }, [enteredText, pokemons]);
-
-  console.log(filteredPokemon);
 
   // Observer for scroll
   useEffect(() => {
@@ -61,25 +57,35 @@ function Pokedex() {
   }, [inView]);
 
   // Render Pokemon Cards
-  const pokemonList = data?.data.results.map(
+  const pokemonList = pokemons.map((pokemon: pokemonListTypes, i: number) => {
+    if (i >= pageCount) return null;
+    const info = { name: pokemon.name, url: pokemon.url };
+    if (i === pageCount - 1) {
+      // Last item ref based on pageCount
+      return (
+        <div ref={ref} key={i}>
+          <PokemonCard {...info} />
+        </div>
+      );
+    } else {
+      return (
+        // Standard Item without ref
+        <div key={i}>
+          <PokemonCard {...info} />
+        </div>
+      );
+    }
+  });
+
+  // Render Filtered Pokemon Cards
+  const filteredPokemonList = filteredPokemon.map(
     (pokemon: pokemonListTypes, i: number) => {
-      if (i >= pageCount) return null;
       const info = { name: pokemon.name, url: pokemon.url };
-      if (i === pageCount - 1) {
-        // Last item ref based on pageCount
-        return (
-          <div ref={ref} key={i}>
-            <PokemonCard {...info} />
-          </div>
-        );
-      } else {
-        return (
-          // Standard Item without ref
-          <div key={i}>
-            <PokemonCard {...info} />
-          </div>
-        );
-      }
+      return (
+        <div key={i}>
+          <PokemonCard {...info} />
+        </div>
+      );
     }
   );
 
@@ -89,6 +95,7 @@ function Pokedex() {
       <div className={styles.pokedex}>
         <div className={styles.pokedex__container}>
           {!enteredText && pokemonList}
+          {enteredText && filteredPokemonList}
         </div>
       </div>
     </>
