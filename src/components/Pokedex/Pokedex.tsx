@@ -12,7 +12,10 @@ interface pokemonListTypes {
 
 function Pokedex() {
   const { data } = usePokemonList();
-  const [pokemon, setPokemon] = useState<any>([]);
+  const [pokemons, setPokemons] = useState<Array<pokemonListTypes>>([]);
+  const [filteredPokemon, setFilteredPokemon] = useState<
+    Array<pokemonListTypes>
+  >([]);
   const [enteredText, setEnteredText] = useState("");
   const [pageCount, setPageCount] = useState(20);
   const { ref, inView } = useInView({
@@ -21,12 +24,34 @@ function Pokedex() {
 
   // Map over pokemon data
   useEffect(() => {
-    data?.data.results.forEach((pokemon: any) => {
-      setPokemon((prevPokemon: any) => {
-        return [...prevPokemon, pokemon.name];
+    data?.data.results.forEach((pokemon: pokemonListTypes) => {
+      setPokemons((prevPokemons) => {
+        return [...prevPokemons, { name: pokemon.name, url: pokemon.url }];
       });
     });
   }, [data]);
+
+  useEffect(() => {
+    function filterPokemon(value: string) {
+      const filteredPokemon = pokemons.filter((pokemon) => {
+        if (!pokemon.name.toLowerCase().includes(value)) return false;
+        return {
+          name: pokemon.name.toLowerCase().includes(value),
+          url: pokemon.url,
+        };
+      });
+
+      console.log(filteredPokemon);
+
+      setFilteredPokemon(filteredPokemon);
+    }
+
+    if (enteredText) {
+      filterPokemon(enteredText);
+    }
+  }, [enteredText, pokemons]);
+
+  console.log(filteredPokemon);
 
   // Observer for scroll
   useEffect(() => {
