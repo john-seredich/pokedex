@@ -12,19 +12,30 @@ interface pokemonListTypes {
 
 function Pokedex() {
   const { data } = usePokemonList();
-  const [isSearching, setIsSearching] = useState(false);
+  const [pokemon, setPokemon] = useState<any>([]);
+  const [enteredText, setEnteredText] = useState("");
   const [pageCount, setPageCount] = useState(20);
   const { ref, inView } = useInView({
     rootMargin: "200px",
   });
 
-  // Observer
+  // Map over pokemon data
+  useEffect(() => {
+    data?.data.results.forEach((pokemon: any) => {
+      setPokemon((prevPokemon: any) => {
+        return [...prevPokemon, pokemon.name];
+      });
+    });
+  }, [data]);
+
+  // Observer for scroll
   useEffect(() => {
     if (inView) {
       setPageCount((prevCount: number) => prevCount + 20);
     }
   }, [inView]);
 
+  // Render Pokemon Cards
   const pokemonList = data?.data.results.map(
     (pokemon: pokemonListTypes, i: number) => {
       if (i >= pageCount) return null;
@@ -49,10 +60,10 @@ function Pokedex() {
 
   return (
     <>
-      <Header setIsSearching={setIsSearching} />
+      <Header enteredText={enteredText} setEnteredText={setEnteredText} />
       <div className={styles.pokedex}>
         <div className={styles.pokedex__container}>
-          {!isSearching && pokemonList}
+          {!enteredText && pokemonList}
         </div>
       </div>
     </>

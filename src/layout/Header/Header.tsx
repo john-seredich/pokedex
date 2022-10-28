@@ -1,12 +1,15 @@
 import Search from "../../components/Search/Search";
-import { setIsSearchingType } from "../../shared/types/search.type";
 import styles from "./Header.module.scss";
+import { EnteredText } from "../../shared/interfaces/entered.interface";
 
-function Header(props: setIsSearchingType) {
+function Header(props: EnteredText) {
   return (
     <>
       <h1 className={styles.header__title}>Pokédex</h1>
-      <Search setIsSearching={props.setIsSearching} />
+      <Search
+        enteredText={props.enteredText}
+        setEnteredText={props.setEnteredText}
+      />
     </>
   );
 }
