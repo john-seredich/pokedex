@@ -45,7 +45,7 @@ function Pokedex() {
     }
 
     if (enteredText) {
-      filterPokemon(enteredText);
+      filterPokemon(enteredText.toLowerCase());
     }
   }, [enteredText, pokemons]);
 
