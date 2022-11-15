@@ -1,4 +1,5 @@
 import { usePokemonData } from "../../hooks/usePokemonData";
+import PokemonModal from "../PokemonModal/PokemonModal";
 import styles from "./PokemonCard.module.scss";
 
 interface Props {
@@ -30,13 +31,16 @@ function PokemonCard(props: Props) {
   });
 
   return (
-    <div className={`${styles.pokemon_card} ${styles[pokemonColor]}`}>
-      <h4>#{pokemonNumber}</h4>
-      <h3>{pokemonName}</h3>
-      {isLoading && <p>Loading...</p>}
-      <img src={pokemonImg} alt={props.name} />
-      {pokemonTypes}
-    </div>
+    <>
+      <PokemonModal />
+      <div className={`${styles.pokemon_card} ${styles[pokemonColor]}`}>
+        <h4>#{pokemonNumber}</h4>
+        <h3>{pokemonName}</h3>
+        {isLoading && <p>Loading...</p>}
+        <img src={pokemonImg} alt={props.name} />
+        {pokemonTypes}
+      </div>
+    </>
   );
 }
 
