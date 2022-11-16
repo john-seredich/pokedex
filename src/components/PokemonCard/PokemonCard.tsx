@@ -27,6 +27,7 @@ function PokemonCard(props: Props) {
   const pokemonNumber: string = data?.data.id;
   const pokemonName: string = setUpperCase(props.name);
   const pokemonColor: string = data?.data.types[0].type.name;
+  const pokemonSpeciesInfo: string = data?.data.species.url;
   const pokemonTypes = data?.data.types.map((type: pokemonType, i: number) => {
     const upperCaseType = setUpperCase(type.type.name);
     return <p key={i}>{upperCaseType}</p>;
@@ -39,6 +40,7 @@ function PokemonCard(props: Props) {
     pokemonName,
     pokemonColor,
     pokemonTypes,
+    pokemonSpeciesInfo,
     setIsOpen,
   };
 
