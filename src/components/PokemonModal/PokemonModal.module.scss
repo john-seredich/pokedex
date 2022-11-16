@@ -40,9 +40,28 @@
         margin-bottom: 0.25rem;
       }
 
+      p {
+        color: #424242;
+        font-size: 0.85rem;
+        line-height: 1.4;
+      }
+
       &_bar {
         height: 4px;
         width: 48px;
+      }
+    }
+
+    &_types {
+      display: flex;
+      align-items: flex-start;
+
+      p {
+        padding: 0.75rem 2.75rem;
+        border-radius: 0.5rem;
+        margin-right: 0.75rem;
+        font-weight: 600;
+        color: white;
       }
     }
   }

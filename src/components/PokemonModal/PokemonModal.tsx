@@ -32,6 +32,11 @@ const Modal = (props: Props) => {
               styles[props.pokemonColor]
             }`}
           ></div>
+          <p>
+            This legendary ice Pokémon waits for a hero to fill in the missing
+            parts of its body with truth or ideals.
+          </p>
+          <div className={styles.modal__data_types}>{props.pokemonTypes}</div>
         </div>
       </div>
     </div>
