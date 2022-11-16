@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { usePokemonData } from "../../hooks/usePokemonData";
 import PokemonModal from "../PokemonModal/PokemonModal";
 import styles from "./PokemonCard.module.scss";
@@ -20,20 +21,34 @@ function setUpperCase(string: string) {
 }
 
 function PokemonCard(props: Props) {
+  const [isOpen, setIsOpen] = useState(false);
   const { data, isLoading } = usePokemonData(props.url);
-  const pokemonImg = data?.data.sprites.front_default;
-  const pokemonNumber = data?.data.id;
-  const pokemonName = setUpperCase(props.name);
-  const pokemonColor = data?.data.types[0].type.name;
+  const pokemonImg: string = data?.data.sprites.front_default;
+  const pokemonNumber: string = data?.data.id;
+  const pokemonName: string = setUpperCase(props.name);
+  const pokemonColor: string = data?.data.types[0].type.name;
   const pokemonTypes = data?.data.types.map((type: pokemonType, i: number) => {
     const upperCaseType = setUpperCase(type.type.name);
     return <p key={i}>{upperCaseType}</p>;
   });
 
+  const propsObj = {
+    data,
+    pokemonImg,
+    pokemonNumber,
+    pokemonName,
+    pokemonColor,
+    pokemonTypes,
+    setIsOpen,
+  };
+
   return (
     <>
-      <PokemonModal />
-      <div className={`${styles.pokemon_card} ${styles[pokemonColor]}`}>
+      {isOpen && <PokemonModal {...propsObj} />}
+      <div
+        className={`${styles.pokemon_card} ${styles[pokemonColor]}`}
+        onClick={() => setIsOpen(true)}
+      >
         <h4>#{pokemonNumber}</h4>
         <h3>{pokemonName}</h3>
         {isLoading && <p>Loading...</p>}
