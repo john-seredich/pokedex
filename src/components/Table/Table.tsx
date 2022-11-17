@@ -1,26 +1,14 @@
 import styles from "./Table.module.scss";
 
-function Table() {
-  const data = [
-    {
-      heading: "Height",
-      body: "0.90m",
-    },
-    {
-      heading: "Weight",
-      body: "0.90m",
-    },
-    {
-      heading: "Category",
-      body: "Seed",
-    },
-    {
-      heading: "Abilities",
-      body: "Overgrowth, Chlorophyll",
-    },
-  ];
+interface Props {
+  data: {
+    heading: string;
+    body: string;
+  }[];
+}
 
-  const tableElement = data.map((item, i: number) => {
+function Table(props: Props) {
+  const tableElement = props.data.map((item, i: number) => {
     return (
       <tr key={i}>
         <th>{item.heading}</th>
