@@ -37,6 +37,8 @@ function PokemonCard(props: Props) {
     );
   });
 
+  console.log(pokemonSpeciesInfo);
+
   const propsObj = {
     data,
     pokemonImg,
