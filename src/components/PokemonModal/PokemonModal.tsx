@@ -1,4 +1,5 @@
 import ReactDOM from "react-dom";
+import Table from "../Table/Table";
 import styles from "./PokemonModal.module.scss";
 
 interface Props {
@@ -38,26 +39,7 @@ const Modal = (props: Props) => {
           </p>
           <div className={styles.modal__data_types}>{props.pokemonTypes}</div>
         </div>
-        <table className={styles.modal__table}>
-          <tbody>
-            <tr>
-              <th>Height</th>
-              <td>0.90m</td>
-            </tr>
-            <tr>
-              <th>Weight</th>
-              <td>15.2lbs</td>
-            </tr>
-            <tr>
-              <th>Category</th>
-              <td>Seed</td>
-            </tr>
-            <tr>
-              <th>Abilities</th>
-              <td>Overgrowth, Chlorophyll</td>
-            </tr>
-          </tbody>
-        </table>
+        <Table />
       </div>
     </div>
   );
