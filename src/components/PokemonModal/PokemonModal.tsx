@@ -12,6 +12,25 @@ interface Props {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+const data = [
+  {
+    heading: "Height",
+    body: "0.90m",
+  },
+  {
+    heading: "Weight",
+    body: "0.90m",
+  },
+  {
+    heading: "Category",
+    body: "Seed",
+  },
+  {
+    heading: "Abilities",
+    body: "Overgrowth, Chlorophyll",
+  },
+];
+
 const Modal = (props: Props) => {
   return (
     <div
@@ -39,7 +58,7 @@ const Modal = (props: Props) => {
           </p>
           <div className={styles.modal__data_types}>{props.pokemonTypes}</div>
         </div>
-        <Table />
+        <Table data={data} />
       </div>
     </div>
   );
