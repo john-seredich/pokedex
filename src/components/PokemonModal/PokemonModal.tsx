@@ -8,6 +8,7 @@ interface Props {
   pokemonImg: string;
   pokemonColor: string;
   pokemonTypes: any;
+  pokemonSpeciesInfo: string;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
