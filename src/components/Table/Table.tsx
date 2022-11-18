@@ -8,7 +8,7 @@ interface Props {
 }
 
 function Table(props: Props) {
-  const tableElement = props.data.map((item, i: number) => {
+  const tableElements = props.data.map((item, i: number) => {
     return (
       <tr key={i}>
         <th>{item.heading}</th>
@@ -19,7 +19,7 @@ function Table(props: Props) {
 
   return (
     <table className={styles.table}>
-      <tbody>{tableElement}</tbody>
+      <tbody>{tableElements}</tbody>
     </table>
   );
 }

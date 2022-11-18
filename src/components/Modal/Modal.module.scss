@@ -1,7 +1,10 @@
 .modal {
   position: fixed;
   width: 100%;
-  height: 100%;
+  top: 0;
+  bottom: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
 
   &__header {
     margin-top: 4rem;

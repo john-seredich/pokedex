@@ -1,3 +1,6 @@
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import Table from "../Table/Table";
 import styles from "./Modal.module.scss";
 
@@ -6,52 +9,57 @@ interface Props {
   pokemonNumber: string;
   pokemonName: string;
   pokemonImg: string;
+  pokemonSpeciesInfo: string;
   pokemonColor: string;
   pokemonTypes: any;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const pokemonInfo = {
-  height: "",
-  weight: "",
-  category: "",
-  abilities: "",
-  baseExp: "",
-  baseHappiness: "",
-  catchRate: "",
-  growthRate: "",
+const fetchPokemonSpecies = (url: string) => {
+  return axios.get(url);
 };
-
-const pokemonStats = {
-  hp: 1,
-  attack: 1,
-  defense: 1,
-  spAtk: 1,
-  spDef: 1,
-  speed: 1,
-  total: 1,
-};
-
-const data = [
-  {
-    heading: "Height",
-    body: "0.90m",
-  },
-  {
-    heading: "Weight",
-    body: "0.90m",
-  },
-  {
-    heading: "Category",
-    body: "Seed",
-  },
-  {
-    heading: "Abilities",
-    body: "Overgrowth, Chlorophyll",
-  },
-];
 
 function Modal(props: Props) {
+  // Query Function
+
+  const data = [
+    {
+      heading: "Height",
+      body: "0.70m",
+    },
+    {
+      heading: "Weight",
+      body: "15.2lbs",
+    },
+    {
+      heading: "Category",
+      body: "Seed",
+    },
+    {
+      heading: "Abilities",
+      body: "Overgrowth, Chlorophyll",
+    },
+  ];
+
+  const trainingData = [
+    {
+      heading: "Base Exp",
+      body: "64",
+    },
+    {
+      heading: "Base Happiness",
+      body: "50",
+    },
+    {
+      heading: "Catch Rate",
+      body: "45",
+    },
+    {
+      heading: "Growth Rate",
+      body: "Medium-slow",
+    },
+  ];
+
   return (
     <div
       className={`${styles.modal} ${styles[props.pokemonColor]}`}
@@ -79,6 +87,7 @@ function Modal(props: Props) {
           <div className={styles.modal__data_types}>{props.pokemonTypes}</div>
         </div>
         <Table data={data} />
+        <Table data={trainingData} />
       </div>
     </div>
   );
