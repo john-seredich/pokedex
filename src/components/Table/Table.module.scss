@@ -1,5 +1,8 @@
 .table,
 tr {
+  table-layout: fixed;
+  width: 100%;
+  max-width: 300px;
   margin-top: 1.5rem;
   border-collapse: collapse;
   border: 1px solid #9d9d9d;
@@ -12,6 +15,10 @@ tr {
     text-align: center;
     padding: 1rem 2.5rem;
     background-color: #d9d9d9;
+  }
+
+  th {
+    max-width: 130px;
   }
   td {
     font-weight: 600;
