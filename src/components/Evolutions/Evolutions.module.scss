@@ -1,0 +1,13 @@
+.evolutions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 2rem;
+
+  &__item {
+    background-color: #78c850;
+    margin: 1rem;
+    padding: 1.5rem;
+    border-radius: 5rem;
+  }
+}
