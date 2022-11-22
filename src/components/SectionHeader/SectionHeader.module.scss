@@ -1,0 +1,19 @@
+.header {
+  margin-top: 2rem;
+  h2 {
+    font-size: 1rem;
+    color: #252525;
+    margin-bottom: 0.25rem;
+  }
+
+  p {
+    color: #424242;
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  &_bar {
+    height: 4px;
+    width: 48px;
+  }
+}
