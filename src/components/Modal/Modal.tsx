@@ -78,8 +78,8 @@ function Modal(props: Props) {
           </p>
           <div className={styles.modal__data_types}>{props.pokemonTypes}</div>
         </div>
-        {/* <Table data={data} />
-        <Table data={trainingData} /> */}
+        <Table data={data} />
+        <Table data={trainingData} />
         <PokemonBaseStats pokemonColor={props.pokemonColor} />
       </div>
     </div>

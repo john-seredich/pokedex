@@ -10,7 +10,7 @@ interface Props {
 function Table(props: Props) {
   const tableElements = props.data.map((item, i: number) => {
     return (
-      <tr key={i}>
+      <tr className={styles.table__row} key={i}>
         <th>{item.heading}</th>
         <td>{item.body}</td>
       </tr>
