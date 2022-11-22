@@ -32,8 +32,8 @@
   &__data {
     margin-top: 1.5rem;
     padding: 1.5rem;
-    height: 100%;
-    border-radius: 2rem;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
     background-color: white;
 
     &_header {

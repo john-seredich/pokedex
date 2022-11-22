@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePokemonData } from "../../hooks/usePokemonData";
 import PokemonModal from "../PokemonModal/PokemonModal";
 import styles from "./PokemonCard.module.scss";
@@ -47,6 +47,13 @@ function PokemonCard(props: Props) {
     pokemonSpeciesInfo,
     setIsOpen,
   };
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    if (html) {
+      html.style.overflow = isOpen ? "hidden" : "auto";
+    }
+  }, [isOpen]);
 
   return (
     <>
