@@ -1,4 +1,6 @@
+import Evolutions from "../Evolutions/Evolutions";
 import PokemonBaseStats from "../PokemonBaseStats/PokemonBaseStats";
+import SectionHeader from "../SectionHeader/SectionHeader";
 import Table from "../Table/Table";
 import styles from "./Modal.module.scss";
 
@@ -66,21 +68,28 @@ function Modal(props: Props) {
       </div>
       <div className={styles.modal__data}>
         <div className={styles.modal__data_header}>
-          <h2>About</h2>
-          <div
-            className={`${styles.modal__data_header_bar} ${
-              styles[props.pokemonColor]
-            }`}
-          ></div>
+          <SectionHeader color={props.pokemonColor} text="About" />
           <p>
             This legendary ice Pokémon waits for a hero to fill in the missing
             parts of its body with truth or ideals.
           </p>
           <div className={styles.modal__data_types}>{props.pokemonTypes}</div>
         </div>
-        <Table data={data} />
-        <Table data={trainingData} />
-        <PokemonBaseStats pokemonColor={props.pokemonColor} />
+        <>
+          <SectionHeader color={props.pokemonColor} text="Training" />
+          <Table data={data} />
+        </>
+        <>
+          <Table data={trainingData} />
+        </>
+        <>
+          <SectionHeader color={props.pokemonColor} text="Base Stats" />
+          <PokemonBaseStats pokemonColor={props.pokemonColor} />
+        </>
+        <>
+          <SectionHeader color={props.pokemonColor} text="Evolutions" />
+          <Evolutions pokemonImg={props.pokemonImg} />
+        </>
       </div>
     </div>
   );

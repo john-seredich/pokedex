@@ -4,6 +4,7 @@ import PokemonCard from "../PokemonCard/PokemonCard";
 import { useState, useEffect } from "react";
 import { usePokemonList } from "../../hooks/usePokemonList";
 import Header from "../../layout/Header/Header";
+import "../../index.css";
 import PokemonModal from "../PokemonModal/PokemonModal";
 
 interface pokemonListTypes {
