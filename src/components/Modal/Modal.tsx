@@ -1,6 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { useState, useEffect } from "react";
+import PokemonBaseStats from "../PokemonBaseStats/PokemonBaseStats";
 import Table from "../Table/Table";
 import styles from "./Modal.module.scss";
 
@@ -15,13 +13,7 @@ interface Props {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const fetchPokemonSpecies = (url: string) => {
-  return axios.get(url);
-};
-
 function Modal(props: Props) {
-  // Query Function
-
   const data = [
     {
       heading: "Height",
@@ -86,8 +78,9 @@ function Modal(props: Props) {
           </p>
           <div className={styles.modal__data_types}>{props.pokemonTypes}</div>
         </div>
-        <Table data={data} />
-        <Table data={trainingData} />
+        {/* <Table data={data} />
+        <Table data={trainingData} /> */}
+        <PokemonBaseStats pokemonColor={props.pokemonColor} />
       </div>
     </div>
   );
