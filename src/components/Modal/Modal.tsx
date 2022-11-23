@@ -68,7 +68,7 @@ function Modal(props: Props) {
       </div>
       <div className={styles.modal__data}>
         <div className={styles.modal__data_header}>
-          <SectionHeader color={props.pokemonColor} text="About" />
+          <SectionHeader color={props.pokemonColor} text="About" width="49px" />
           <p>
             This legendary ice Pokémon waits for a hero to fill in the missing
             parts of its body with truth or ideals.
@@ -76,18 +76,30 @@ function Modal(props: Props) {
           <div className={styles.modal__data_types}>{props.pokemonTypes}</div>
         </div>
         <>
-          <SectionHeader color={props.pokemonColor} text="Training" />
           <Table data={data} />
         </>
         <>
+          <SectionHeader
+            color={props.pokemonColor}
+            text="Training"
+            width="64px"
+          />
           <Table data={trainingData} />
         </>
         <>
-          <SectionHeader color={props.pokemonColor} text="Base Stats" />
+          <SectionHeader
+            color={props.pokemonColor}
+            text="Base Stats"
+            width="83px"
+          />
           <PokemonBaseStats pokemonColor={props.pokemonColor} />
         </>
         <>
-          <SectionHeader color={props.pokemonColor} text="Evolutions" />
+          <SectionHeader
+            color={props.pokemonColor}
+            text="Evolutions"
+            width="83px"
+          />
           <Evolutions pokemonImg={props.pokemonImg} />
         </>
       </div>
