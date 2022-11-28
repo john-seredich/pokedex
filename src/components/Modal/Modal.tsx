@@ -135,14 +135,14 @@ function Modal(props: Props) {
             />
             <Table data={pokemonStats} />
           </div>
-          <div className={styles.section}>
+          {/* <div className={styles.section}>
             <SectionHeader
               color={props.pokemonColor}
               text="Evolutions"
               width="83px"
             />
             <Evolutions pokemonImg={props.pokemonImg} />
-          </div>
+          </div> */}
         </div>
       </div>
     </>
