@@ -123,6 +123,17 @@
   // }
 }
 
+@media screen and (min-width: 900px) {
+  .modal {
+    &__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      padding: 6rem 0rem;
+    }
+  }
+}
+
 @media screen and (min-width: 1796px) {
   .modal {
     &__data {
