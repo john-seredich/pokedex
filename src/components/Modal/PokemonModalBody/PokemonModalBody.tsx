@@ -2,10 +2,10 @@ import {
   biography,
   pokemonStats,
   trainingData,
-} from "../../test_data/tableTestData";
-import SectionHeader from "../SectionHeader/SectionHeader";
-import Table from "../Table/Table";
-import styles from "./Modal.module.scss";
+} from "../../../test_data/tableTestData";
+import SectionHeader from "../../SectionHeader/SectionHeader";
+import Table from "../../Table/Table";
+import styles from "./PokemonModalBody.module.scss";
 
 interface Props {
   data: any;
@@ -20,7 +20,7 @@ interface Props {
 
 // Fix POSITION STYLES TOMORROW
 
-function Modal(props: Props) {
+function PokemonModalBody(props: Props) {
   const pokemonColorStyle = styles[props.pokemonColor];
   return (
     <>
@@ -88,4 +88,4 @@ function Modal(props: Props) {
   );
 }
 
-export default Modal;
+export default PokemonModalBody;

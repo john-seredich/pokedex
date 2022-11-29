@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { usePokemonData } from "../../hooks/usePokemonData";
-import PokemonModal from "../PokemonModal/PokemonModal";
+import PokemonModal from "../Modal/PokemonModal/PokemonModal";
 import styles from "./PokemonCard.module.scss";
 
 interface Props {

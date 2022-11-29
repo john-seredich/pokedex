@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { usePokemonList } from "../../hooks/usePokemonList";
 import Header from "../../layout/Header/Header";
 import "../../index.css";
-import PokemonModal from "../PokemonModal/PokemonModal";
+import PokemonModal from "../Modal/PokemonModal/PokemonModal";
 
 interface pokemonListTypes {
   name: string;

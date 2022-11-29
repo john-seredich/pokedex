@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import Modal from "../Modal/Modal";
+import PokemonModalBody from "../PokemonModalBody/PokemonModalBody";
 
 interface Props {
   data: any;
@@ -16,7 +16,7 @@ function PokemonModal(props: Props) {
   return (
     <>
       {ReactDOM.createPortal(
-        <Modal {...props} />,
+        <PokemonModalBody {...props} />,
         document.getElementById("modal-root")!
       )}
     </>
