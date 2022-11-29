@@ -5,6 +5,7 @@ import {
 } from "../../../test_data/tableTestData";
 import SectionHeader from "../../SectionHeader/SectionHeader";
 import Table from "../../Table/Table";
+import PokemonModalHeader from "../PokemonModalHeader/PokemonModalHeader";
 import styles from "./PokemonModalBody.module.scss";
 
 interface Props {
@@ -18,8 +19,6 @@ interface Props {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-// Fix POSITION STYLES TOMORROW
-
 function PokemonModalBody(props: Props) {
   const pokemonColorStyle = styles[props.pokemonColor];
   return (
@@ -29,13 +28,7 @@ function PokemonModalBody(props: Props) {
         className={`${styles.modal} ${pokemonColorStyle}`}
         onClick={() => props.setIsOpen(false)}
       >
-        <div className={`${styles.modal__header} ${pokemonColorStyle}`}>
-          <div className={styles.modal__header_container}>
-            <p className={styles.modal__header_num}>#{props.pokemonNumber}</p>
-            <h2 className={styles.modal__header_name}>{props.pokemonName}</h2>
-          </div>
-          <img src={props.pokemonImg} alt={props.pokemonName} />
-        </div>
+        <PokemonModalHeader {...props} />
         <div className={styles.modal__data}>
           <div className={styles.modal__data_header}>
             <SectionHeader
@@ -74,14 +67,6 @@ function PokemonModalBody(props: Props) {
             />
             <Table data={pokemonStats} />
           </div>
-          {/* <div className={styles.section}>
-            <SectionHeader
-              color={props.pokemonColor}
-              text="Evolutions"
-              width="83px"
-            />
-            <Evolutions pokemonImg={props.pokemonImg} />
-          </div> */}
         </div>
       </div>
     </>

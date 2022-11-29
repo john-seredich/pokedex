@@ -1,0 +1,32 @@
+.header {
+  padding-top: 4rem;
+  text-align: center;
+  color: white;
+  background-color: #78c850;
+
+  &__num {
+    margin: 0;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  &__name {
+    margin: 0;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.375rem;
+    font-weight: 600;
+  }
+
+  img {
+    margin-top: 0.75rem;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 6rem 0rem;
+  }
+}
