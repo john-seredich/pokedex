@@ -74,7 +74,7 @@
 }
 
 .backdrop {
-  position: absolute;
+  position: fixed;
   background-color: rgba(0, 0, 0, 0.798);
   height: 100%;
   width: 100%;
@@ -98,7 +98,7 @@
 
 @media screen and (min-width: 700px) {
   .modal {
-    position: absolute;
+    position: fixed;
     max-width: 900px;
     left: 50%;
     transform: translateX(-50%);

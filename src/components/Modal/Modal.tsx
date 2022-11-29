@@ -15,7 +15,10 @@ interface Props {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+// Fix POSITION STYLES TOMORROW
+
 function Modal(props: Props) {
+  const pokemonColorStyle = styles[props.pokemonColor];
   const data = [
     {
       heading: "Height",
@@ -89,8 +92,11 @@ function Modal(props: Props) {
   return (
     <>
       <div className={styles.backdrop}></div>
-      <div className={`${styles.modal}`} onClick={() => props.setIsOpen(false)}>
-        <div className={styles.modal__header}>
+      <div
+        className={`${styles.modal} ${pokemonColorStyle}`}
+        onClick={() => props.setIsOpen(false)}
+      >
+        <div className={`${styles.modal__header} ${pokemonColorStyle}`}>
           <div className={styles.modal__header_container}>
             <p className={styles.modal__header_num}>#{props.pokemonNumber}</p>
             <h2 className={styles.modal__header_name}>{props.pokemonName}</h2>
