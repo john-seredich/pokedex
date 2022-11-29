@@ -7,7 +7,13 @@
   &__item {
     background-color: #78c850;
     margin: 1rem;
-    padding: 1.5rem;
+    padding: 1rem;
     border-radius: 5rem;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .evolutions {
+    flex-direction: row;
   }
 }
