@@ -1,3 +1,4 @@
+import { usePokemonData } from "../../../hooks/usePokemonData";
 import { pokemonDataProps } from "../../../shared/interfaces/pokemonDataProps.interface";
 import {
   biography,
@@ -9,7 +10,43 @@ import Table from "../../Table/Table";
 import PokemonModalHeader from "../PokemonModalHeader/PokemonModalHeader";
 import styles from "./PokemonModalBody.module.scss";
 
+interface IAbility {
+  ability: {
+    name: string;
+    url: string;
+  };
+  isHidden: boolean;
+  slot: number;
+}
+
 function PokemonModalBody(props: pokemonDataProps) {
+  const { data: species } = usePokemonData(props.pokemonSpeciesInfo);
+  const flavorText = species?.data.flavor_text_entries[1].flavor_text;
+  const abilities = props.data?.data.abilities.map((obj: IAbility) => {
+    return " " + obj.ability.name[0].toUpperCase() + obj.ability.name.slice(1);
+  });
+  const information = [
+    // Fix the data having no decimals
+    {
+      heading: "Height",
+      body: props.data?.data.height,
+    },
+    {
+      heading: "Weight",
+      body: props.data?.data.weight,
+    },
+    {
+      heading: "Category",
+      body: "Seed",
+    },
+    {
+      heading: "Abilities",
+      body: abilities.toString(),
+    },
+  ];
+
+  console.log(species?.data.flavor_text_entries);
+
   return (
     <>
       <div className={styles.backdrop}></div>
@@ -22,10 +59,7 @@ function PokemonModalBody(props: pokemonDataProps) {
               text="About"
               width="49px"
             />
-            <p>
-              This legendary ice Pokémon waits for a hero to fill in the missing
-              parts of its body with truth or ideals.
-            </p>
+            <p>{flavorText}</p>
             <div className={styles.modal__data_types}>{props.pokemonTypes}</div>
           </div>
 
@@ -35,7 +69,7 @@ function PokemonModalBody(props: pokemonDataProps) {
               text="Information"
               width="64px"
             />
-            <Table data={biography} />
+            <Table data={information} />
           </div>
           <div>
             <SectionHeader
