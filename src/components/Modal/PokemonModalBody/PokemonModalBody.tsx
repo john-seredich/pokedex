@@ -10,7 +10,6 @@ import PokemonModalHeader from "../PokemonModalHeader/PokemonModalHeader";
 import styles from "./PokemonModalBody.module.scss";
 
 function PokemonModalBody(props: pokemonDataProps) {
-  const pokemonColorStyle = styles[props.pokemonColor];
   return (
     <>
       <div className={styles.backdrop}></div>
