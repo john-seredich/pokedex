@@ -21,7 +21,7 @@ interface IAbility {
 
 function PokemonModalBody(props: pokemonDataProps) {
   const { data: species } = usePokemonData(props.pokemonSpeciesInfo);
-  const flavorText = species?.data.flavor_text_entries[1].flavor_text;
+  const flavorText = species?.data.flavor_text_entries[0].flavor_text;
   const abilities = props.data?.data.abilities.map((obj: IAbility) => {
     return " " + obj.ability.name[0].toUpperCase() + obj.ability.name.slice(1);
   });
@@ -37,7 +37,7 @@ function PokemonModalBody(props: pokemonDataProps) {
     },
     {
       heading: "Category",
-      body: "Seed",
+      body: species?.data.genera[7].genus,
     },
     {
       heading: "Abilities",
@@ -45,7 +45,7 @@ function PokemonModalBody(props: pokemonDataProps) {
     },
   ];
 
-  console.log(species?.data.flavor_text_entries);
+  console.log(species?.data);
 
   return (
     <>
