@@ -1,3 +1,4 @@
+import { pokemonDataProps } from "../../../shared/interfaces/pokemonDataProps.interface";
 import {
   biography,
   pokemonStats,
@@ -8,29 +9,15 @@ import Table from "../../Table/Table";
 import PokemonModalHeader from "../PokemonModalHeader/PokemonModalHeader";
 import styles from "./PokemonModalBody.module.scss";
 
-interface Props {
-  data: any;
-  pokemonNumber: string;
-  pokemonName: string;
-  pokemonImg: string;
-  pokemonSpeciesInfo: string;
-  pokemonColor: string;
-  pokemonTypes: any;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-function PokemonModalBody(props: Props) {
+function PokemonModalBody(props: pokemonDataProps) {
   const pokemonColorStyle = styles[props.pokemonColor];
   return (
     <>
       <div className={styles.backdrop}></div>
-      <div
-        className={`${styles.modal} ${pokemonColorStyle}`}
-        onClick={() => props.setIsOpen(false)}
-      >
+      <div className={`${styles.modal}`} onClick={() => props.setIsOpen(false)}>
         <PokemonModalHeader {...props} />
         <div className={styles.modal__data}>
-          <div className={styles.modal__data_header}>
+          <div className={styles.modal__data_about}>
             <SectionHeader
               color={props.pokemonColor}
               text="About"
@@ -43,7 +30,7 @@ function PokemonModalBody(props: Props) {
             <div className={styles.modal__data_types}>{props.pokemonTypes}</div>
           </div>
 
-          <div className={styles.section}>
+          <div>
             <SectionHeader
               color={props.pokemonColor}
               text="Information"
@@ -51,7 +38,7 @@ function PokemonModalBody(props: Props) {
             />
             <Table data={biography} />
           </div>
-          <div className={styles.section}>
+          <div>
             <SectionHeader
               color={props.pokemonColor}
               text="Training"
@@ -59,7 +46,7 @@ function PokemonModalBody(props: Props) {
             />
             <Table data={trainingData} />
           </div>
-          <div className={styles.section}>
+          <div>
             <SectionHeader
               color={props.pokemonColor}
               text="Base Stats"

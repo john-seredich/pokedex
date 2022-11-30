@@ -1,18 +1,8 @@
 import ReactDOM from "react-dom";
+import { pokemonDataProps } from "../../../shared/interfaces/pokemonDataProps.interface";
 import PokemonModalBody from "../PokemonModalBody/PokemonModalBody";
 
-interface Props {
-  data: any;
-  pokemonNumber: string;
-  pokemonName: string;
-  pokemonImg: string;
-  pokemonColor: string;
-  pokemonTypes: any;
-  pokemonSpeciesInfo: string;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-function PokemonModal(props: Props) {
+function PokemonModal(props: pokemonDataProps) {
   return (
     <>
       {ReactDOM.createPortal(
