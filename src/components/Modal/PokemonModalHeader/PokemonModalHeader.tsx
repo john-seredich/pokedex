@@ -8,9 +8,8 @@ interface Props {
 }
 
 function PokemonModalHeader(props: Props) {
-  const pokemonColorStyle = styles[props.pokemonColor];
   return (
-    <div className={`${styles.header} ${pokemonColorStyle}`}>
+    <div className={`${styles.header} ${styles[props.pokemonColor]}`}>
       <div>
         <p className={styles.header__num}>#{props.pokemonNumber}</p>
         <h2 className={styles.header__name}>{props.pokemonName}</h2>
