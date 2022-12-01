@@ -1,10 +1,5 @@
 import { usePokemonData } from "../../../hooks/usePokemonData";
 import { pokemonDataProps } from "../../../shared/interfaces/pokemonDataProps.interface";
-import {
-  biography,
-  pokemonStats,
-  trainingData,
-} from "../../../test_data/tableTestData";
 import SectionHeader from "../../SectionHeader/SectionHeader";
 import Table from "../../Table/Table";
 import PokemonModalHeader from "../PokemonModalHeader/PokemonModalHeader";
@@ -17,6 +12,15 @@ interface IAbility {
   };
   isHidden: boolean;
   slot: number;
+}
+
+interface IStat {
+  base_stat: number;
+  effort: number;
+  stat: {
+    name: string;
+    url: string;
+  };
 }
 
 function PokemonModalBody(props: pokemonDataProps) {
@@ -47,6 +51,7 @@ function PokemonModalBody(props: pokemonDataProps) {
   ];
 
   const training = [
+    // Fix growth rate not being capital
     {
       heading: "Base Exp",
       body: props.data?.data.base_experience,
@@ -61,13 +66,20 @@ function PokemonModalBody(props: pokemonDataProps) {
     },
     {
       heading: "Growth Rate",
-      body:
-        species?.data.growth_rate.name[0].toUpperCase() +
-        species?.data.growth_rate.name.slice(1),
+      body: species?.data.growth_rate.name,
     },
   ];
 
-  console.log(species?.data);
+  const stats = props.data?.data.stats.map((stat: IStat) => {
+    return {
+      heading: stat.base_stat,
+      body: stat.stat.name,
+    };
+  });
+
+  console.log(stats);
+
+  console.log(props.data?.data);
 
   return (
     <>
@@ -107,7 +119,7 @@ function PokemonModalBody(props: pokemonDataProps) {
               text="Base Stats"
               width="83px"
             />
-            <Table data={pokemonStats} />
+            <Table data={stats} />
           </div>
         </div>
       </div>
