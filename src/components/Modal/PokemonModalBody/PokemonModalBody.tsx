@@ -25,6 +25,7 @@ function PokemonModalBody(props: pokemonDataProps) {
   const abilities = props.data?.data.abilities.map((obj: IAbility) => {
     return " " + obj.ability.name[0].toUpperCase() + obj.ability.name.slice(1);
   });
+
   const information = [
     // Fix the data having no decimals
     {
@@ -42,6 +43,27 @@ function PokemonModalBody(props: pokemonDataProps) {
     {
       heading: "Abilities",
       body: abilities.toString(),
+    },
+  ];
+
+  const training = [
+    {
+      heading: "Base Exp",
+      body: props.data?.data.base_experience,
+    },
+    {
+      heading: "Base Happiness",
+      body: species?.data.base_happiness,
+    },
+    {
+      heading: "Catch Rate",
+      body: species?.data.capture_rate,
+    },
+    {
+      heading: "Growth Rate",
+      body:
+        species?.data.growth_rate.name[0].toUpperCase() +
+        species?.data.growth_rate.name.slice(1),
     },
   ];
 
@@ -77,7 +99,7 @@ function PokemonModalBody(props: pokemonDataProps) {
               text="Training"
               width="64px"
             />
-            <Table data={trainingData} />
+            <Table data={training} />
           </div>
           <div>
             <SectionHeader
