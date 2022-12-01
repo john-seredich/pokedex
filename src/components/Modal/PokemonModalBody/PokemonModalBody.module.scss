@@ -6,47 +6,6 @@
   overflow-y: scroll;
   overflow-x: hidden;
   background-color: white;
-
-  &__data {
-    margin-top: 1.5rem;
-    padding: 1.5rem;
-    border-top-left-radius: 2rem;
-    border-top-right-radius: 2rem;
-    background-color: white;
-
-    &_about {
-      max-width: 300px;
-      h2 {
-        font-size: 1rem;
-        color: #252525;
-        margin-bottom: 0.25rem;
-      }
-
-      p {
-        color: #424242;
-        font-size: 0.85rem;
-        line-height: 1.4;
-      }
-
-      &_bar {
-        height: 4px;
-        width: 48px;
-      }
-    }
-
-    &_types {
-      display: flex;
-      align-items: flex-start;
-
-      p {
-        padding: 0.75rem 2.75rem;
-        border-radius: 0.5rem;
-        margin-right: 0.75rem;
-        font-weight: 600;
-        color: white;
-      }
-    }
-  }
 }
 
 .backdrop {
@@ -57,136 +16,11 @@
 }
 
 // Media Queries
-@media screen and (min-width: 500px) {
-  .modal {
-    &__data {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      &_types {
-        align-items: center;
-        justify-content: space-between;
-      }
-    }
-  }
-}
-
 @media screen and (min-width: 700px) {
   .modal {
     position: fixed;
     max-width: 900px;
     left: 50%;
     transform: translateX(-50%);
-    &__data {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      // place-items: center;
-      align-items: flex-start;
-      justify-items: center;
-
-      &_types {
-        margin-top: 2rem;
-        display: block;
-        text-align: center;
-        max-width: 250px;
-      }
-    }
   }
-
-  // .section {
-  //   align-self: start;
-  // }
-}
-
-@media screen and (min-width: 900px) {
-  .modal {
-    &__header {
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-      padding: 6rem 0rem;
-    }
-  }
-}
-
-@media screen and (min-width: 1796px) {
-  .modal {
-    &__data {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    }
-  }
-}
-
-.grass {
-  background-color: #78c850;
-}
-
-.poison {
-  background-color: #a040a0;
-}
-
-.fire {
-  background-color: #f08030;
-}
-
-.flying {
-  background-color: #a890f0;
-}
-
-.water {
-  background-color: #6890f0;
-}
-
-.bug {
-  background-color: #a8b820;
-}
-
-.normal {
-  background-color: #a5a477;
-}
-
-.electric {
-  background-color: #d5b328;
-  //   background-color: #f8d030;
-}
-
-.ground {
-  background-color: #e0c068;
-}
-
-.fairy {
-  background-color: #f0b6bc;
-}
-
-.fighting {
-  background-color: #c03028;
-}
-
-.rock {
-  background-color: #b8a038;
-}
-
-.steel {
-  background-color: #b8b8d0;
-}
-
-.ghost {
-  background-color: #705898;
-}
-
-.psychic {
-  background-color: #f85888;
-}
-
-.dragon {
-  background-color: #7038f8;
-}
-.dark {
-  background-color: #705848;
-}
-
-.ice {
-  background-color: #98d8d8;
 }
