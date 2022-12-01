@@ -23,7 +23,7 @@ interface IStat {
 }
 
 function PokemonModalData(props: pokemonDataProps) {
-  const { data: species } = usePokemonData(props.pokemonSpeciesInfo);
+  const { data: species, isLoading } = usePokemonData(props.pokemonSpeciesInfo);
   const flavorText = species?.data.flavor_text_entries[0].flavor_text;
   const abilities = props.data?.data.abilities.map((obj: IAbility) => {
     return " " + obj.ability.name[0].toUpperCase() + obj.ability.name.slice(1);
@@ -80,6 +80,7 @@ function PokemonModalData(props: pokemonDataProps) {
     <div className={styles.data}>
       <div className={styles.data__about}>
         <SectionHeader color={props.pokemonColor} text="About" width="49px" />
+        {isLoading && <p>Loading...</p>}
         <p>{flavorText}</p>
         <div className={styles.data__types}>{props.pokemonTypes}</div>
       </div>
@@ -90,7 +91,7 @@ function PokemonModalData(props: pokemonDataProps) {
           text="Information"
           width="64px"
         />
-        <Table data={information} />
+        <Table data={information} isLoading={isLoading} />
       </div>
       <div>
         <SectionHeader
@@ -98,7 +99,7 @@ function PokemonModalData(props: pokemonDataProps) {
           text="Training"
           width="64px"
         />
-        <Table data={training} />
+        <Table data={training} isLoading={isLoading} />
       </div>
       <div>
         <SectionHeader
@@ -106,7 +107,7 @@ function PokemonModalData(props: pokemonDataProps) {
           text="Base Stats"
           width="83px"
         />
-        <Table data={stats} />
+        <Table data={stats} isLoading={isLoading} />
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ interface Props {
     heading: string;
     body: string;
   }[];
+  isLoading: boolean;
 }
 
 function Table(props: Props) {
@@ -12,7 +13,7 @@ function Table(props: Props) {
     return (
       <tr className={styles.table__row} key={i}>
         <th>{item.heading}</th>
-        <td>{item.body}</td>
+        <td>{`${props.isLoading ? "Loading" : item.body}`}</td>
       </tr>
     );
   });
