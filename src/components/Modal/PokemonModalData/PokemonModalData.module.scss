@@ -46,6 +46,12 @@
     flex-direction: column;
     align-items: center;
 
+    &__about {
+      p {
+        text-align: center;
+      }
+    }
+
     &__types {
       align-items: center;
       justify-content: space-between;
@@ -59,6 +65,12 @@
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     align-items: flex-start;
     justify-items: center;
+
+    &__about {
+      p {
+        text-align: start;
+      }
+    }
 
     &_types {
       margin-top: 2rem;
