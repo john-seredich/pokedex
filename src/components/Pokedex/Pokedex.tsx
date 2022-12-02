@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import { usePokemonList } from "../../hooks/usePokemonList";
 import Header from "../../layout/Header/Header";
 import "../../index.css";
-import PokemonModal from "../Modal/PokemonModal/PokemonModal";
 
 interface pokemonListTypes {
   name: string;
@@ -13,7 +12,7 @@ interface pokemonListTypes {
 }
 
 function Pokedex() {
-  const { data } = usePokemonList();
+  const { data, isLoading, error } = usePokemonList();
   const [pokemons, setPokemons] = useState<Array<pokemonListTypes>>([]);
   const [filteredPokemon, setFilteredPokemon] = useState<
     Array<pokemonListTypes>
@@ -90,6 +89,9 @@ function Pokedex() {
       );
     }
   );
+
+  if (isLoading) return <h2>Loading...</h2>;
+  if (error instanceof Error) return <h2>{error.message}</h2>;
 
   return (
     <>
