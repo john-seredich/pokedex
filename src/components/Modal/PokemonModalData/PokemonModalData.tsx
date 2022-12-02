@@ -49,7 +49,11 @@ function insertDecimal(num: string) {
 }
 
 function PokemonModalData(props: pokemonDataProps) {
-  const { data: species, isLoading } = usePokemonData(props.pokemonSpeciesInfo);
+  const {
+    data: species,
+    isLoading,
+    error,
+  } = usePokemonData(props.pokemonSpeciesInfo);
 
   // Find english description
   const flavorText: IFlavorText = species?.data.flavor_text_entries.find(
@@ -112,10 +116,16 @@ function PokemonModalData(props: pokemonDataProps) {
 
   const stats = props.data?.data.stats.map((stat: IStat) => {
     return {
-      heading: stat.base_stat,
-      body: stat.stat.name,
+      heading: stat.stat.name,
+      body: stat.base_stat,
     };
   });
+
+  if (isLoading) return <p className={styles.message}>Loading...</p>;
+  if (error instanceof Error)
+    return (
+      <p className={styles.message}>An Error has occured. {error.message}</p>
+    );
 
   return (
     <div className={styles.data}>
