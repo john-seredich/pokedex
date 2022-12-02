@@ -22,22 +22,62 @@ interface IStat {
   };
 }
 
+interface IFlavorText {
+  flavor_text: string;
+  language: {
+    name: string;
+    url: string;
+  };
+  version: {
+    name: string;
+    url: string;
+  };
+}
+
+function insertDecimal(num: string) {
+  const numberToString = num.length;
+  if (numberToString === 1) {
+    return `0.${num}`;
+  } else if (numberToString === 2) {
+    return `${num[0]}.${num[1]}`;
+  } else if (numberToString === 3) {
+    return `${num.slice(0, 2)}.${num[2]}`;
+  } else {
+    return `${num.slice(0, 3)}.${num[3]}`;
+  }
+}
+
 function PokemonModalData(props: pokemonDataProps) {
   const { data: species, isLoading } = usePokemonData(props.pokemonSpeciesInfo);
-  const flavorText = species?.data.flavor_text_entries[0].flavor_text;
-  const abilities = props.data?.data.abilities.map((obj: IAbility) => {
-    return " " + obj.ability.name[0].toUpperCase() + obj.ability.name.slice(1);
-  });
+
+  // Find english description
+  const flavorText: IFlavorText = species?.data.flavor_text_entries.find(
+    (lang: any) => {
+      return lang.language.name === "en";
+    }
+  );
+
+  // Find Abilities
+  const abilities: IAbility = props.data?.data.abilities.map(
+    (obj: IAbility) => {
+      return (
+        " " + obj.ability.name[0].toUpperCase() + obj.ability.name.slice(1)
+      );
+    }
+  );
+
+  // Find Growth Rate
+  const growthRate: string =
+    species?.data.growth_rate.name[0] + species?.data.growth_rate.name.slice(1);
 
   const information = [
-    // Fix the data having no decimals
     {
       heading: "Height",
-      body: props.data?.data.height,
+      body: `${insertDecimal(props.data?.data.height.toString())} m`,
     },
     {
       heading: "Weight",
-      body: props.data?.data.weight,
+      body: `${insertDecimal(props.data?.data.weight.toString())} kg`,
     },
     {
       heading: "Category",
@@ -65,7 +105,7 @@ function PokemonModalData(props: pokemonDataProps) {
     },
     {
       heading: "Growth Rate",
-      body: species?.data.growth_rate.name,
+      body: growthRate,
     },
   ];
 
@@ -81,7 +121,7 @@ function PokemonModalData(props: pokemonDataProps) {
       <div className={styles.data__about}>
         <SectionHeader color={props.pokemonColor} text="About" width="49px" />
         {isLoading && <p>Loading...</p>}
-        <p>{flavorText}</p>
+        <p>{flavorText && flavorText.flavor_text}</p>
         <div className={styles.data__types}>{props.pokemonTypes}</div>
       </div>
 
