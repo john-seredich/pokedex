@@ -34,6 +34,7 @@ interface IFlavorText {
   };
 }
 
+// Insert Decimal into weight/height info
 function insertDecimal(num: string) {
   const numberToString = num.length;
   if (numberToString === 1) {
@@ -68,7 +69,8 @@ function PokemonModalData(props: pokemonDataProps) {
 
   // Find Growth Rate
   const growthRate: string =
-    species?.data.growth_rate.name[0] + species?.data.growth_rate.name.slice(1);
+    species?.data.growth_rate.name[0].toUpperCase() +
+    species?.data.growth_rate.name.slice(1);
 
   const information = [
     {
@@ -90,7 +92,6 @@ function PokemonModalData(props: pokemonDataProps) {
   ];
 
   const training = [
-    // Fix growth rate not being capital
     {
       heading: "Base Exp",
       body: props.data?.data.base_experience,
