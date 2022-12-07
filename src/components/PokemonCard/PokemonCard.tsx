@@ -8,7 +8,7 @@ interface Props {
   url: string;
 }
 
-interface pokemonType {
+interface IpokemonType {
   slot: string;
   type: {
     name: string;
@@ -28,7 +28,7 @@ function PokemonCard(props: Props) {
   const pokemonName: string = setUpperCase(props.name);
   const pokemonColor: string = data?.data.types[0].type.name;
   const pokemonSpeciesInfo: string = data?.data.species.url;
-  const pokemonTypes = data?.data.types.map((type: pokemonType, i: number) => {
+  const pokemonTypes = data?.data.types.map((type: IpokemonType, i: number) => {
     const upperCaseType = setUpperCase(type.type.name);
     return (
       <p className={`${styles[type.type.name]}`} key={i}>
