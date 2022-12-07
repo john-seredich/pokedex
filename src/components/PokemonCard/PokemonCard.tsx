@@ -55,6 +55,24 @@ function PokemonCard(props: Props) {
     }
   }, [isOpen]);
 
+  useEffect(() => {
+    const html = document.querySelector("html");
+    if (html && isLoading) {
+      html.style.pointerEvents = "none";
+    } else if (html && !isLoading) {
+      html.style.pointerEvents = "auto";
+    }
+  }, [isLoading]);
+
+  if (isLoading)
+    return (
+      <div className={styles.pokemon_card}>
+        <div className={styles.pokemon_card__loading}>
+          <p>Loading...</p>
+        </div>
+      </div>
+    );
+
   return (
     <>
       {isOpen && <PokemonModal {...propsObj} />}

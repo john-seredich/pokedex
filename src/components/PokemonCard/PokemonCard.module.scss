@@ -6,13 +6,19 @@
   height: 355px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  // background-color: #78c850;
+  background-color: #4b4b4b;
+  // background-color: white;
   color: white;
   cursor: pointer;
 
   h4 {
     padding-top: 1rem;
   }
+
+  &__loading {
+    padding-top: 8.5rem;
+  }
+
   p {
     background-color: #4b4b4b;
     margin: 1rem 5rem;
