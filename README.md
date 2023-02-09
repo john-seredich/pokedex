@@ -2,6 +2,8 @@
 
 ---
 
+[Live Project](https://john-seredich.github.io/pokedex/)
+
 **Pokéindex is a pokémon encyclopedia built using ReactJS, Typescript, CSS Modules, and the PokeAPI.**
 
 You can find information about every pokemon currently released. This includes pokemon types, stats, forms, and basic information.
